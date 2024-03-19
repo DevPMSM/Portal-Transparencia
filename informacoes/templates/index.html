@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+ 
+    Mostrar
+    <ul>
+        {% for dado in dados %}
+        <li>{{dado.id}} - {{dado.nome}} - {{dado.cpf}}
+            <a href="{%url 'editar' dado.id %}">Editar</a>
+            <a href="{%url 'delete' dado.id %}">Deletar</a>
+            <a href="{%url 'relatorio' dado.id %}"> Ver </a>
+        
+        </li>
+        {% endfor %}
+    </ul>
+
+    <!-- form para o create onde irei cadastrar nova-->
+    Inserir
+    <form action= "{% url 'salvar' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="nome" placeholder="nome">
+        <input type="text" name="cpf" placeholder="cpf">
+        <input type="text" name="relatorio" placeholder="Digite o seu relatório">
+        
+        <button type="submit"> salvar </button>
+
+    </form>
+        
+</body>
+</html>
